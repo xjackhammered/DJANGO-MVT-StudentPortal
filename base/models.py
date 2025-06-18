@@ -3,13 +3,13 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class User(AbstractUser):
-    name = models.CharField(max_length=200, null=True)
+    username = models.CharField(max_length=200, null=True)
     email = models.EmailField(null=True, unique=True)
     avatar = models.ImageField(null=True, default="avatar.svg")
     type = models.CharField(null=False)
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['username']
 
 class Course(models.Model):
     creator = models.ManyToManyField(User)
