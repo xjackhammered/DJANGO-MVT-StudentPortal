@@ -17,6 +17,9 @@ class Course(models.Model):
     code = models.TextField(max_length=10)
     created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.name
+
 class Posts(models.Model):
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
@@ -24,3 +27,6 @@ class Posts(models.Model):
     file = models.FileField(upload_to="post_files/", blank=True, null=True)
     description = models.TextField(max_length=1000)
     created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.course
