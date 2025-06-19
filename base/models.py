@@ -20,6 +20,7 @@ class Course(models.Model):
     def __str__(self):
         return self.name
 
+
 class Posts(models.Model):
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
@@ -29,4 +30,4 @@ class Posts(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.course
+        return self.description[0:50]
