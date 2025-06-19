@@ -12,10 +12,11 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['username']
 
 class Course(models.Model):
-    creator = models.ManyToManyField(User)
+    creator = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="courses_created")
     name = models.CharField(max_length=200)
     code = models.TextField(max_length=10)
     created = models.DateTimeField(auto_now_add=True)
+    participants = models.ManyToManyField(User, blank=True, related_name="joined_courses")
 
     def __str__(self):
         return self.name

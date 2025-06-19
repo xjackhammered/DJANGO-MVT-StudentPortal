@@ -1,13 +1,17 @@
-{% include 'home.html' %}
+{% extends 'home.html' %}
 
 {% block content %}
     {% for course in courses %}
-        <h1>{{course.name}}</h1>
-        <h2>{{course.code}}</h2>
-        <p>{{course.creator}}</p>
+        <h1>{{ course.name }}</h1>
+        <h2>{{ course.code }}</h2>
+        
+        {% if course.creator %}
+            <p>Created by: {{ course.creator.username }}</p>
+        {% else %}
+            <p>No creator assigned</p>
+        {% endif %}
 
-        <small>{{course.created|timesince}}</small>
+        <small>{{ course.created|timesince }}</small>
         <hr />
     {% endfor %}
-
 {% endblock content %}
