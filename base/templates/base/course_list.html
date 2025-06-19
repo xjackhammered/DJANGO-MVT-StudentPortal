@@ -1,0 +1,13 @@
+{% include 'home.html' %}
+
+{% block content %}
+    {% for course in courses %}
+        <h1>{{course.name}}</h1>
+        <h2>{{course.code}}</h2>
+        <p>{{course.creator}}</p>
+
+        <small>{{course.created|timesince}}</small>
+        <hr />
+    {% endfor %}
+
+{% endblock content %}
